@@ -9,13 +9,13 @@ pipeline {
 	        UIPATH_ORCH_FOLDER_NAME = "Default"
 		}
 	
-	parameters {
-			choice(name: 'VERSION', choices: ['1.1.1','1.2.1','1.2.3'], description: 'process to be deployed')
+    parameters {
+	        choice(name: 'VERSION', choices: ['1.1.1','1.2.1','1.2.3'], description: 'process to be deployed')
 					
-			}
+	       }
     
     stages {
-        stage('Preparin Info') {
+        stage('Preparing Info') {
             steps {
                 echo "Jenkins Home ${env.JENKINS_HOME}"
 	        echo "Jenkins URL ${env.JENKINS_URL}"
@@ -32,20 +32,6 @@ pipeline {
                 echo 'Hello world!3' 
 		    echo "guy esta a deployar ${params.VERSION}"
             }
-        }
-    }
-	
-// 
-    post {
-        success {
-          echo 'Deployment has been completed!'
-        }
-        failure {
-          echo "FAILED: Job '[${env.BUILD_NUMBER}]' (${env.JOB_DISPLAY_URL})"
-        }
-        always {
-            /* Clean workspace if success */
-          //cleanWs()
         }
     }
 }
