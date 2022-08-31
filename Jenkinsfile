@@ -1,0 +1,51 @@
+pipeline {
+    agent any 
+    // Environment Variables
+    environment {
+	        //Orchestrator Services
+	        UIPATH_ORCH_URL = "https://prpa002zatcwi.vodacom.corp/"
+	        UIPATH_ORCH_LOGICAL_NAME = "foneg001"
+	        UIPATH_ORCH_TENANT_NAME = "Mozambique"
+	        UIPATH_ORCH_FOLDER_NAME = "Default"
+		}
+	
+	parameters {
+			//choice(name: 'VERSION', choices: ['1.1.1','1.2.1','1.2.3'], description: 'process to be deployed')
+					
+			}
+    
+    stages {
+        stage('Preparin Info') {
+            steps {
+                echo "Jenkins Home ${env.JENKINS_HOME}"
+	              echo "Jenkins URL ${env.JENKINS_URL}"
+	              echo "GitHub BranhName ${env.BRANCH_NAME}"
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Hello world!2' 
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Hello world!3' 
+		            echo "guy esta a deployar ${params.VERSION}"
+            }
+        }
+    }
+	
+// 
+    post {
+        success {
+          echo 'Deployment has been completed!'
+        }
+        failure {
+        
+        }
+        always {
+            /* Clean workspace if success */
+          //cleanWs()
+        }
+    }
+}
