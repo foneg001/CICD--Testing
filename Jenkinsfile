@@ -1,5 +1,10 @@
 pipeline {
     agent any 
+    parameters {
+			choice(name: 'VERSION', choices: ['1.1.1','1.2.1','1.2.3'], description: 'process to be deployed')
+					
+			}
+    
     stages {
         stage('Build') {
             steps {
