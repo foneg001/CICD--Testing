@@ -19,6 +19,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Hello world!3' 
+		    echo "guy esta a deployar ${params.VERSION}"
             }
         }
     }
