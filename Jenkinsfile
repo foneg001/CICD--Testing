@@ -23,7 +23,7 @@ pipeline {
 		checkout scm
             }
         }
-        stage('Build') {
+        stage('Build Package') {
             steps {
 		echo "Building...with ${WORKSPACE}"
 		UiPathPack (
