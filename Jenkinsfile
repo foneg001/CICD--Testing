@@ -2,6 +2,8 @@ pipeline {
     agent any 
     // Environment Variables
     environment {
+	    	MAJOR = '1'
+      		MINOR = '0'
 	        //Orchestrator Services
 	        UIPATH_ORCH_URL = "https://prpa002zatcwi.vodacom.corp/"
 	        UIPATH_ORCH_LOGICAL_NAME = "foneg001"
