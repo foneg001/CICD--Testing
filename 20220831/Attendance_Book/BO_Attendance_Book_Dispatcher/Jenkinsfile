@@ -2,6 +2,8 @@ pipeline {
     agent any 
     // Environment Variables
     environment {
+	    	MAJOR = '1'
+       		MINOR = '0'
 	        //Orchestrator Services
 	        UIPATH_ORCH_URL = "https://prpa002zatcwi.vodacom.corp/"
 	        UIPATH_ORCH_LOGICAL_NAME = "foneg001"
@@ -22,9 +24,16 @@ pipeline {
 	        echo "GitHub BranhName ${env.BRANCH_NAME}"
             }
         }
-        stage('Build') {
+        stage('Build Package') {
             steps {
-                echo 'Hello world!2' 
+                echo "Building...with ${WORKSPACE}"
+                UiPathPack (
+                outputPath: "Output\\${env.BUILD_NUMBER}",
+                projectJsonPath: "project.json",
+                version: [$class: 'ManualVersionEntry', version: "${MAJOR}.${MINOR}.${env.BUILD_NUMBER}"],
+                useOrchestrator: false,
+                traceLevel: 'None'
+    		) 
             }
         }
         stage('Deploy') {
